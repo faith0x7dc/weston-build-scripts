@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e ### exit if occured error
+
+PACKAGE=libevdev
+
+. scripts/env.sh
+
+run_clone git://anongit.freedesktop.org/libevdev
+
+cd_package
+
+run_autogen
+
+run_make
+run_make install
+
+package_success
+

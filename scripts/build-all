@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+set -e ### exit if occured error
+
+###
+### install packages using apt-get
+###
+./scripts/install-packages
+
+###
+### build packages
+###
+
+# libwayland-*:
+./scripts/build-wayland
+
+## dependencies for Mesa:
+./scripts/build-drm
+./scripts/build-proto
+./scripts/build-macros
+./scripts/build-libxcb
+./scripts/build-presentproto
+./scripts/build-dri3proto
+./scripts/build-libxshmfence
+
+# Mesa:
+./scripts/build-mesa
+
+## dependencies for weston:
+./scripts/build-pixman
+./scripts/build-cairo
+./scripts/build-libxkbcommon
+./scripts/build-libevdev
+
+# needed for weston 1.5 or newer version
+#./scripts/build-libinput
+
+./scripts/build-libunwind
+
+# weston
+./scripts/build-weston
+

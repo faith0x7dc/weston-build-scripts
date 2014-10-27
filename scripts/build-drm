@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e ### exit if occured error
+
+PACKAGE=drm
+
+. scripts/env.sh
+
+run_clone git://anongit.freedesktop.org/git/mesa/drm
+
+cd_package
+
+run_autogen
+
+run_make
+run_make install
+
+package_success
+

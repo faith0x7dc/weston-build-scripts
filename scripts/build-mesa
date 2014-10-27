@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -e ### exit if occured error
+
+PACKAGE=mesa
+
+. scripts/env.sh
+
+run_clone git://anongit.freedesktop.org/mesa/mesa
+
+cd_package
+
+run_autogen \
+ --enable-gles2 \
+ --disable-gallium-egl \
+ --with-egl-platforms=x11,wayland,drm \
+ --enable-gbm \
+ --enable-shared-glapi \
+ --with-gallium-drivers=r300,r600,swrast,nouveau \
+ --with-llvm-prefix=/usr/lib/llvm-3.3 \
+ --disable-llvm-shared-libs # this may be a bug in the llvm package
+
+run_make
+run_make install
+
+package_success
+

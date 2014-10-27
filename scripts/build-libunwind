@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e ### exit if occured error
+
+PACKAGE=libunwind
+
+. scripts/env.sh
+
+run_clone git://git.sv.gnu.org/libunwind
+
+cd_package
+
+run_configure
+
+run_make
+run_make install
+
+package_success
+

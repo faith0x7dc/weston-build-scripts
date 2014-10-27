@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -e ### exit if occured error
+
+PACKAGE=cairo
+
+. scripts/env.sh
+
+run_clone git://anongit.freedesktop.org/cairo
+
+cd_package
+
+run_autogen \
+ --enable-xcb
+
+run_make
+run_make install
+
+package_success
+

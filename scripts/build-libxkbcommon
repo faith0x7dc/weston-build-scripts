@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -e ### exit if occured error
+
+PACKAGE=libxkbcommon
+
+. scripts/env.sh
+
+run_clone git://github.com/xkbcommon/libxkbcommon
+
+cd_package
+
+run_autogen \
+ --with-xkb-config-root=/usr/share/X11/xkb
+
+run_make
+run_make install
+
+package_success
+
